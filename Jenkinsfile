@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t asma/dp-alpine:latest .'
+        sh 'docker build -t manpitiya/dp-alpine:latest .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push asma/dp-alpine:latest'
+        sh 'docker push manpitiya/dp-alpine:latest'
       }
     }
   }
