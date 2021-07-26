@@ -11,24 +11,15 @@ pipeline {
     registryUrl = 'temptestcicd.azurecr.io'
   }
   stages {
-    stage('Build') {
-      steps {
-        sh 'docker build -t temptestcicd.azurecr.io/dp-alpine:latest .'
-      }
-    }
     stage('publish docker') {
       steps{
         script{
         docker.withRegistry("http://${registryUrl}", registryCredential) {
-            "docker.push temptestcicd.azurecr.io/dp-alpine"
+          def   dockerImage = docker.build("temptestcicd.azurecr.io/dp-alpine:latest")
+          dockerImage.push 'latest'
         }
       }
     }
   }
-  }
-  post {
-    always {
-      sh 'docker logout'
-    }
   }
 }
