@@ -4,7 +4,11 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('ACR')
+    registryName = "TempTestCICD"
+    //- update your credentials ID after creating credentials for connecting to ACR
+    TempTestCICD = 'ACR'
+    dockerImage = ''
+    registryUrl = 'temptestcicd.azurecr.io'
   }
   stages {
     stage('Build') {
@@ -12,15 +16,10 @@ pipeline {
         sh 'docker build -t temptestcicd.azurecr.io/dp-alpine:latest .'
       }
     }
-    stage('Login') {
-      steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
-    }
-    stage('Push') {
-      steps {
-        sh 'docker push temptestcicd.azurecr.io/dp-alpine:latest'
-      }
+    stage('publish docker') {
+      docker.withRegistry("http://${REGISTRY_URL}", "$TempTestCICD") {
+            docker.push temptestcicd.azurecr.io/dp-alpine:latest
+        }
     }
   }
   post {
