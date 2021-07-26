@@ -4,12 +4,12 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('asma-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('ACR')
   }
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t manpitiya/dp-alpine:latest .'
+        sh 'docker build -t TempTestCICD/dp-alpine:latest .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push manpitiya/dp-alpine:latest'
+        sh 'docker push TempTestCICD/dp-alpine:latest'
       }
     }
   }
