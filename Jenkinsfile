@@ -4,9 +4,9 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    registryName = "TempTestCICD"
+    registryName = 'TempTestCICD'
     //- update your credentials ID after creating credentials for connecting to ACR
-    TempTestCICD = 'ACR'
+    registryCredential  = 'ACR'
     dockerImage = ''
     registryUrl = 'temptestcicd.azurecr.io'
   }
@@ -17,7 +17,7 @@ pipeline {
       }
     }
     stage('publish docker') {
-      docker.withRegistry("http://${REGISTRY_URL}", "$TempTestCICD") {
+      docker.withRegistry("http://${registryUrl}", registryCredential) {
             docker.push temptestcicd.azurecr.io/dp-alpine:latest
         }
     }
