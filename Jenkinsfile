@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t TempTestCICD/dp-alpine:latest .'
+        sh 'docker build -t temptestcicd.azurecr.io/dp-alpine:latest .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push TempTestCICD/dp-alpine:latest'
+        sh 'docker push temptestcicd.azurecr.io/dp-alpine:latest'
       }
     }
   }
