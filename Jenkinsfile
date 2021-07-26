@@ -20,7 +20,7 @@ pipeline {
       steps{
         script{
         docker.withRegistry("http://${registryUrl}", registryCredential) {
-            sh 'docker.push temptestcicd.azurecr.io/dp-alpine:latest'
+            docker.push temptestcicd.azurecr.io/dp-alpine:latest
         }
       }
     }
