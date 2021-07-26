@@ -17,9 +17,11 @@ pipeline {
       }
     }
     stage('publish docker') {
+      steps{
       docker.withRegistry("http://${registryUrl}", registryCredential) {
             docker.push temptestcicd.azurecr.io/dp-alpine:latest
         }
+      }
     }
   }
   post {
