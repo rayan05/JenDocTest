@@ -18,7 +18,8 @@ pipeline {
     }
     stage('publish docker') {
       steps{
-      docker.withRegistry("http://${registryUrl}", registryCredential) {
+        script{
+        docker.withRegistry("http://${registryUrl}", registryCredential) {
             sh 'docker.push temptestcicd.azurecr.io/dp-alpine:latest'
         }
       }
