@@ -1,1 +1,1 @@
-FROM alpine:3.13.5
+FROM artifactorydk.3shape.local/threeshapedocker/threeshape.nanoserver:1903-nanoserver-amd64
