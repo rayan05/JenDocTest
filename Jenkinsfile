@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'windows' }
+  agent { label 'windows2004-docker-production-1' }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
