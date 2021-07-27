@@ -15,7 +15,7 @@ pipeline {
       steps{
         script{
         docker.withRegistry("http://${registryUrl}", registryCredential) {
-          def   dockerImage = docker.build("temptestcicd.azurecr.io/dp-alpine:latest")
+          def   dockerImage = docker.build("temptestcicd.azurecr.io/threeshape.nanoserver:1903-nanoserver-amd64:latest")
           dockerImage.push 'latest'
         }
       }
