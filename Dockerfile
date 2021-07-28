@@ -1,1 +1,1 @@
-FROM artifactorydk.3shape.local/threeshapedocker/threeshape.nanoserver:1903-nanoserver-amd64
+FROM temptestcicd.azurecr.io/threeshape.nanoserver:1903-nanoserver-amd64
