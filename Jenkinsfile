@@ -14,7 +14,8 @@ pipeline {
     stage('publish docker') {
       steps{
         script{
-              def  st = new Date()
+             println "******************************************************" 
+             def  st = new Date()
               println st.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
               
               docker.withRegistry("http://${registryUrl}", registryCredential) {
@@ -26,6 +27,7 @@ pipeline {
                def minutes = delta.intdiv(60 * 1000) % 60
                     
                println "${minutes} min ${seconds} sec" 
+               println "******************************************************" 
         }
     }
   }
