@@ -4,7 +4,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    registryName = 'threeshape.nanoserver:1903-nanoserver-amd64'
+    registryName = 'temptestcicd.azurecr.io/threeshape.nanoserver:1903-nanoserver-amd64'
     registryCredential  = 'ACR'
     dockerImage = ''
     registryUrl = 'temptestcicd.azurecr.io'
